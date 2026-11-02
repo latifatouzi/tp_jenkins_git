@@ -31,12 +31,16 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo 'Build OK'
-        }
-        failure {
-            echo 'Build KO'
-        }
+   post {
+    success {
+        echo 'Build OK'
+        archiveArtifacts artifacts: 'index.html,style.css',
+                         fingerprint: true
+    }
+
+    failure {
+        echo 'Build KO'
+    }
+}
     }
 }
